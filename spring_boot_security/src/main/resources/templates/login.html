@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Login</title>
+    <link rel="stylesheet" href="../static/css/style.css" th:href="@{/css/style.css}">
+</head>
+<body>
+
+    <!-- Register button: top-right corner -->
+    <header class="top-bar">
+        <a id="registerNavButton" class="btn" href="register.html" th:href="@{/register}">Register</a>
+    </header>
+
+    <!-- Login area: center of the page -->
+    <main class="page-main">
+        <section class="auth-panel" aria-labelledby="loginTitle">
+            <h1 id="loginTitle" class="auth-panel__title">Login</h1>
+
+            <p id="loginErrorMessage" class="form-message" role="alert"
+               hidden th:hidden="${param.error == null}">
+                Wrong username or password.
+            </p>
+            <p id="logoutSuccessMessage" class="form-message" role="status"
+               hidden th:hidden="${param.logout == null}">
+                You have logged out.
+            </p>
+
+            <!-- POST /login (th:action adds the CSRF token automatically) -->
+            <form id="loginForm" name="loginForm" method="post"
+                  action="/login" th:action="@{/login}">
+
+                <div class="field">
+                    <label class="field-label" for="loginUsername">Username</label>
+                    <input id="loginUsername" class="field-input" type="text"
+                           name="username" autocomplete="username" required autofocus>
+                </div>
+
+                <div class="field">
+                    <label class="field-label" for="loginPassword">Password</label>
+                    <input id="loginPassword" class="field-input" type="password"
+                           name="password" autocomplete="current-password" required>
+                </div>
+
+                <button id="loginSubmitButton" class="btn btn--full" type="submit">Login</button>
+            </form>
+        </section>
+    </main>
+
+</body>
+</html>

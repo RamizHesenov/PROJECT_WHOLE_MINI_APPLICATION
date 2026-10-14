@@ -1,0 +1,274 @@
+/* ==========================================================
+   Spring Boot Security – UI
+   Palette
+     --page-bg   rgb(26, 81, 105)    page background
+     --panel-bg  rgb(13, 214, 187)   login / register area
+     --diary-bg  rgb(224, 224, 171)  diary area and diary notes
+     --button-bg white, button text black
+   ========================================================== */
+
+:root {
+    --page-bg: rgb(26, 81, 105);
+    --panel-bg: rgb(13, 214, 187);
+    --diary-bg: rgb(224, 224, 171);
+    --button-bg: #ffffff;
+    --ink: #000000;
+    --on-page: #ffffff;
+
+    --font-ui: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    --font-diary: Georgia, "Times New Roman", serif;
+
+    --panel-width: 400px;   /* login / register area */
+    --diary-width: 540px;   /* diary area is bigger than the login area */
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    min-height: 100%;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background: var(--page-bg);
+    color: var(--on-page);
+    font-family: var(--font-ui);
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+/* ---------- top bar (button in the top-right corner) ---------- */
+
+.top-bar {
+    display: flex;
+    justify-content: flex-end;
+    padding: 1.25rem 1.75rem;
+}
+
+.top-bar form {
+    margin: 0;
+}
+
+/* ---------- main content ---------- */
+
+.page-main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    padding: 1rem 1.25rem 3rem;
+}
+
+.page-title {
+    margin: 0;
+    font-size: 1.75rem;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    text-align: center;
+    color: var(--on-page);
+}
+
+/* ---------- buttons: white background, black text ---------- */
+
+.btn {
+    display: inline-block;
+    padding: 0.6rem 1.4rem;
+    border: 2px solid var(--ink);
+    border-radius: 999px;
+    background: var(--button-bg);
+    color: var(--ink);
+    font: inherit;
+    font-weight: 600;
+    text-decoration: none;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.15s ease;
+}
+
+.btn:hover {
+    background: #ececec;
+}
+
+.btn:focus-visible,
+.field-input:focus-visible,
+.diary-textarea:focus-visible {
+    outline: 3px solid var(--ink);
+    outline-offset: 2px;
+}
+
+.btn--full {
+    width: 100%;
+    margin-top: 0.5rem;
+}
+
+/* ---------- login / register area ---------- */
+
+.auth-panel {
+    width: 100%;
+    max-width: var(--panel-width);
+    padding: 2rem 2rem 2.25rem;
+    border-radius: 18px;
+    background: var(--panel-bg);
+    color: var(--ink);
+}
+
+.auth-panel__title {
+    margin: 0 0 1.25rem;
+    font-size: 1.6rem;
+    font-weight: 700;
+    text-align: center;
+}
+
+.field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    margin-bottom: 1rem;
+}
+
+.field-label {
+    font-weight: 600;
+}
+
+.field-input {
+    width: 100%;
+    padding: 0.65rem 0.8rem;
+    border: 2px solid var(--ink);
+    border-radius: 10px;
+    background: #ffffff;
+    color: var(--ink);
+    font: inherit;
+}
+
+.form-message {
+    margin: 0 0 1rem;
+    padding: 0.55rem 0.8rem;
+    border: 2px solid var(--ink);
+    border-radius: 10px;
+    background: #ffffff;
+    color: var(--ink);
+    font-weight: 600;
+}
+
+.form-message[hidden] {
+    display: none;
+}
+
+/* ---------- diary area (bigger than the login area) ---------- */
+
+.diary-area {
+    width: 100%;
+    max-width: var(--diary-width);
+    padding: 2rem 2.25rem 2.25rem;
+    border-radius: 18px;
+    background: var(--diary-bg);
+    color: var(--ink);
+    font-family: var(--font-diary);
+    font-style: italic;
+}
+
+.diary-area__title {
+    margin: 0 0 0.75rem;
+    font-size: 1.35rem;
+    font-weight: 700;
+    font-style: italic;
+}
+
+.diary-textarea {
+    display: block;
+    width: 100%;
+    min-height: 260px;
+    padding: 0.9rem 1rem;
+    border: 2px solid var(--ink);
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.55);
+    color: var(--ink);
+    font-family: var(--font-diary);
+    font-style: italic;
+    font-size: 1.1rem;
+    line-height: 1.7;
+    resize: vertical;
+}
+
+.diary-area .btn {
+    font-family: var(--font-ui);
+    font-style: normal;
+}
+
+.diary-area__actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 1rem;
+}
+
+/* ---------- diary notes list ---------- */
+
+.notes-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 100%;
+    max-width: var(--diary-width);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.note-card {
+    padding: 1.25rem 1.5rem;
+    border-radius: 18px;
+    background: var(--diary-bg);
+    color: var(--ink);
+    font-family: var(--font-diary);
+    font-style: italic;
+}
+
+.note-card__date {
+    margin: 0 0 0.5rem;
+    font-size: 0.9rem;
+    font-weight: 700;
+}
+
+.note-card__text {
+    margin: 0;
+    font-size: 1.1rem;
+    line-height: 1.7;
+    white-space: pre-wrap;
+}
+
+.notes-empty {
+    margin: 0;
+    padding: 1.25rem 1.5rem;
+    border-radius: 18px;
+    background: var(--diary-bg);
+    color: var(--ink);
+    font-family: var(--font-diary);
+    font-style: italic;
+}
+
+.notes-empty[hidden] {
+    display: none;
+}
+
+/* ---------- small screens ---------- */
+
+@media (max-width: 480px) {
+    .top-bar {
+        padding: 1rem;
+    }
+
+    .auth-panel,
+    .diary-area {
+        padding: 1.5rem 1.25rem;
+    }
+}

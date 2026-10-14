@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Your diary notes</title>
+    <link rel="stylesheet" href="../static/css/style.css" th:href="@{/css/style.css}">
+</head>
+<body>
+
+    <!-- Logout button: top-right corner (POST /logout with CSRF token) -->
+    <header class="top-bar">
+        <form id="logoutForm" name="logoutForm" method="post"
+              action="/logout" th:action="@{/logout}">
+            <button id="logoutButton" class="btn" type="submit">Logout</button>
+        </form>
+    </header>
+
+    <main class="page-main">
+        <h1 class="page-title">Your diary notes</h1>
+
+        <p id="diaryNotesEmptyMessage" class="notes-empty"
+           hidden th:hidden="${!#lists.isEmpty(notes)}">
+            No notes yet. Write your first one.
+        </p>
+
+        <!-- GET /diary/notes: the controller puts a list called "notes" into the model.
+             Each note needs "createdAt" and "text". -->
+        <ul id="diaryNotesList" class="notes-list">
+    <li class="note-card" th:each="note : ${notes}">
+        <p class="note-card__text" th:text="${note.text}">Today I started building the login page for my Spring Boot project. CSRF is working again.</p>
+    </li>
+
+    <!-- Sample notes for opening this file in a browser. Removed by Thymeleaf. -->
+    <li class="note-card" th:remove="all">
+        <p class="note-card__text">The BCrypt part finally makes sense. Passwords are hashed before they reach MySQL.</p>
+    </li>
+    <li class="note-card" th:remove="all">
+        <p class="note-card__text">Learned what UserDetailsService does: it finds the user, Spring checks the password.</p>
+    </li>
+</ul>
+
+        <a id="newNoteButton" class="btn" href="diary.html" th:href="@{/diary}">Write a new note</a>
+    </main>
+
+</body>
+</html>

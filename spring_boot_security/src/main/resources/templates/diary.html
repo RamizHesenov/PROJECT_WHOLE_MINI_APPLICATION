@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Enter your information</title>
+    <link rel="stylesheet" href="../static/css/style.css" th:href="@{/css/style.css}">
+</head>
+<body>
+
+    <!-- Logout button: top-right corner (POST /logout with CSRF token) -->
+    <header class="top-bar">
+        <form id="logoutForm" name="logoutForm" method="post"
+              action="/logout" th:action="@{/logout}">
+            <button id="logoutButton" class="btn" type="submit">Logout</button>
+        </form>
+    </header>
+
+    <main class="page-main">
+        <h1 class="page-title">Enter your information</h1>
+
+        <!-- Diary area: bigger than the login area -->
+        <section class="diary-area" aria-labelledby="diaryTitle">
+            <h2 id="diaryTitle" class="diary-area__title">Write something in your diary</h2>
+
+            <!-- POST /diary/save (th:action adds the CSRF token automatically) -->
+            <form id="diarySaveForm" name="diarySaveForm" method="post"
+                  action="/diary/save" th:action="@{/diary/save}">
+
+                <textarea id="diaryText" class="diary-textarea" name="diaryText"
+                          aria-label="Diary text" placeholder="Dear diary..." required autofocus></textarea>
+
+                <div class="diary-area__actions">
+                    <button id="diarySaveButton" class="btn" type="submit">Save</button>
+                </div>
+            </form>
+        </section>
+    </main>
+
+</body>
+</html>

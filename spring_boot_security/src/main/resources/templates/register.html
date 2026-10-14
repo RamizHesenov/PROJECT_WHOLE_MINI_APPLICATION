@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Register</title>
+    <link rel="stylesheet" href="../static/css/style.css" th:href="@{/css/style.css}">
+</head>
+<body>
+
+    <!-- Login button: top-right corner -->
+    <header class="top-bar">
+        <a id="loginNavButton" class="btn" href="login.html" th:href="@{/login}">Login</a>
+    </header>
+
+    <!-- Register area: same look as the login area -->
+    <main class="page-main">
+        <section class="auth-panel" aria-labelledby="registerTitle">
+            <h1 id="registerTitle" class="auth-panel__title">Register</h1>
+
+            <p id="registerErrorMessage" class="form-message" role="alert"
+               hidden th:hidden="${param.error == null}">
+                Could not register. Try a different username.
+            </p>
+
+            <!-- POST /register (th:action adds the CSRF token automatically) -->
+            <form id="registerForm" name="registerForm" method="post"
+                  action="/register" th:action="@{/register}">
+
+                <div class="field">
+                    <label class="field-label" for="registerUsername">Username</label>
+                    <input id="registerUsername" class="field-input" type="text"
+                           name="username" autocomplete="username" required autofocus>
+                </div>
+
+                <div class="field">
+                    <label class="field-label" for="registerPassword">Password</label>
+                    <input id="registerPassword" class="field-input" type="password"
+                           name="userpassword" autocomplete="new-password" required>
+                </div>
+
+                <div class="field">
+                    <label class="field-label" for="registerAge">Age</label>
+                    <input id="registerAge" class="field-input" type="number"
+                           name="age" min="1" max="120" required>
+                </div>
+
+                <button id="registerSubmitButton" class="btn btn--full" type="submit">Register</button>
+            </form>
+        </section>
+    </main>
+
+</body>
+</html>
