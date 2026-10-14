@@ -1,34 +1,52 @@
 # PROJECT_WHOLE_MINI_APPLICATION
-this is an application which contains login register page and note page. In this application userpassword hashing using BCrypt, data encryption using  TextEncryptor and delux and also simple Logger are provided
 
+This is an application which contains a login/register page and a note page.
+- User passwords are hashed using **BCrypt**
+- Data is encrypted using **TextEncryptor** (AES)
+- A simple **Logger** is also provided
 
-to run this application:
-first open terminal in ide
-then run this command:
+## How to run
 
+1. Open the terminal in your IDE
+2. Run this command:
+
+```bash
 mvn clean install
+```
 
+## Database configuration
 
-in application.properties i have cofigured my db as the name of infoDB. If u wanna change this you have to change it from there
-also to secure the application db password and AES password and salt as well as db password are exported to enviromental variables 
-but this will be work only in my terminal 
+In `application.properties` the database is configured with the name `infoDB`.
+If you want to use another name, change it there.
 
-to configure and export the variables:
+## Environment variables
 
+To keep the application secure, the DB password, the AES password and the salt are exported as environment variables.
+These variables work only in the terminal where you export them.
+
+`application.properties` contains only the keys:
+
+```properties
 spring.datasource.password=${DB_PASSWORD}
 diary.password=${DIARY_PASSWORD}
 diary.salt=${DIARY_SALT}
+```
 
-all of three are containing only keys but you gotta give the variables
+You need to provide the values yourself. Open the terminal and run:
 
-to do it open terminal and run these commands:
-
-
+```bash
 export DB_PASSWORD='your password'
 export DIARY_PASSWORD='your diary_password'
 export DIARY_SALT='salt_value'
+```
 
-then to run it just run java from SpringBootSecurityApplication.java
+## Start the application
+
+Run `SpringBootSecurityApplication.java` from your IDE (or from the same terminal where you exported the variables):
+
+```bash
+mvn spring-boot:run
+```
 
 
 
